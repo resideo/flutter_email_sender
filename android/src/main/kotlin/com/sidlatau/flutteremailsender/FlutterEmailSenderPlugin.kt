@@ -9,6 +9,7 @@ import android.content.ClipData
 import android.content.ClipDescription
 import android.content.Intent
 import android.net.Uri
+import androidx.annotation.NonNull
 import androidx.core.content.FileProvider
 import androidx.core.text.HtmlCompat
 import io.flutter.plugin.common.MethodCall
@@ -145,6 +146,9 @@ class FlutterEmailSenderPlugin
                 clipData.addItem(item)
             }
             intent.clipData = clipData
+
+            intent.action = Intent.ACTION_SENDTO
+            intent.data = Uri.parse("mailto:")
         }
 
         if (text != null) {
